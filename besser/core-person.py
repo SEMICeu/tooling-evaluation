@@ -14,20 +14,31 @@ person: Class = Class(name="Person", attributes={person_birthName, person_birthD
                                                 person_deathDate, person_familyName,
                                                 person_fullName, person_givenName})
 
+
+contactpoint_hasEmail: Property = Property(name="hasEmail", type=StringType)
+contactpoint_hasTelephone: Property = Property(name="hasTelephone", type=StringType)
+# ContactPoint class definition
+contactpoint: Class = Class(name="ContactPoint", attributes={contactpoint_hasEmail, contactpoint_hasTelephone})
+
 # Address attributes definition
 address_postName: Property = Property(name="postName", type=StringType)
 address_postCode: Property = Property(name="postCode", type=IntegerType)
 # Address class definition
 address: Class = Class(name="Address", attributes={address_postName, address_postCode})
 
+# Person-ContactPoint association definition
+person_contactpoint_contactpoint: Property = Property(name="contactPoint", owner=person, type=contactpoint, multiplicity=Multiplicity(0, "*"))
+contactpoint_person_has: Property = Property(name="has", type=person, multiplicity=Multiplicity(0, "*"))
+person_contactpoint_association: Association = Association(name="contactPoint_test", ends={ person_contactpoint_contactpoint, contactpoint_person_has })
+
 # Person-Address association definition
 person_address_domicile: Property = Property(name="domicile", type=address, multiplicity=Multiplicity(0, "*"))
 address_person_has: Property = Property(name="has", owner=None, type=person, multiplicity=Multiplicity(0, "*"))
-person_address_association: Association = Association(name="domicile", ends={person_address_domicile, address_person_has})
+person_address_association: Association = Association(name="domicile_test", ends={person_address_domicile, address_person_has})
 
 # Domain model definition
-library_model: DomainModel = DomainModel(name="Library_model", types={person, address},
-                                         associations={person_address_association})
+library_model: DomainModel = DomainModel(name="Library_model", types={person, contactpoint, address},
+                                         associations={person_contactpoint_association, person_address_association})
 
 # Getting the attributes of the Person class
 for attribute in person.attributes:
