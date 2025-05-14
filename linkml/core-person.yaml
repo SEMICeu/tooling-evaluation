@@ -1,0 +1,157 @@
+# Model header info
+id: http://data.europa.eu/m8g/
+name: core-person-voc
+prefixes:
+  linkml: https://w3id.org/linkml/
+  m8g: http://data.europa.eu/m8g/
+  foaf: http://xmlns.com/foaf/0.1/
+  person: http://www.w3.org/ns/person#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  skos: http://www.w3.org/2004/02/skos/core#
+  owl: http://www.w3.org/2002/07/owl#
+  xsd: http://www.w3.org/2001/XMLSchema#
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+default_curi_maps:
+  - semweb_context
+imports:
+  - linkml:types
+
+# Class definitions
+classes:
+  Person:
+    class_uri: person:Person
+    description: A individual human being who may be dead or alive, but not imaginary.
+    title: Person
+    comments: The Core Public Organization Vocabulary defines properties for telephone number, e-mail address and opening hours although it is noteworthy that the class is based on schema.org's ContactPoint class that has additional properties that some implementations may find useful.
+    slots:
+      - birthName
+      - birthDate
+      - deathDate
+      - familyName
+      - fullName
+      - givenName
+
+  ContactPoint:
+    class_uri: m8g:ContactPoint
+    description: Information (e.g. e-mail address, telephone number) of a person or department through which the user can get in touch with.
+    title: Contact Point
+    comments: The Core Public Organization Vocabulary defines properties for telephone number, e-mail address and opening hours although it is noteworthy that the class is based on schema.org's ContactPoint class that has additional properties that some implementations may find useful.
+    slots:
+      - hasEmail
+      - hasTelephone
+
+# Property definitions
+slots:
+  birthName:
+    title: birth name
+    slot_uri: person:birthName
+    description: Full name of the Person given upon their birth.
+    comments: The birth name may apply to the surname, the given name, or the entire name. Where births are required to be officially registered, the entire name entered onto a births register or birth certificate may by that fact alone become the person's legal name. See Wikipedia Birth name page. All data associated with an individual are subject to change. Names can change for a variety of reasons, either formally or informally, and new information may come to light that means that a correction or clarification can be made to an existing record. Birth names tend to be persistent however and for this reason they are recorded by some public sector information systems. There is no granularity for birth name - the full name should be recorded in a single field.
+    range: Text
+    domain_of: Person
+    multivalued: true
+    minimum_cardinality: 0
+    maximum_cardinality: 9999
+  
+  birthDate:
+    title: date of birth
+    slot_uri: m8g:birthDate
+    description: The point in time on which the Person was born.
+    comments:
+      The date of birth could be expressed as date, gYearMonth or gYear, example;
+        - 1980-09-16^^xs:date
+        - 1980-09^^xs:gYearMonth
+        - 1980^^xs:gYear
+    range: GenericDate
+    domain_of: Person
+    multivalued: true
+    minimum_cardinality: 0
+    maximum_cardinality: 9999
+  
+  deathDate:
+    title: date of death
+    slot_uri: m8g:deathDate
+    description: The point in time on which the Person died.
+    comments:
+      The date of birth could be expressed as date, gYearMonth or gYear, example;
+        - 1980-09-16^^xs:date
+        - 1980-09^^xs:gYearMonth
+        - 1980^^xs:gYear
+    range: GenericDate
+    domain_of: Person
+    multivalued: true
+    minimum_cardinality: 0
+    maximum_cardinality: 9999
+  
+  familyName:
+    title: family name
+    slot_uri: foaf:familyName
+    description: The hereditary surname of a family.
+    comments: 
+      Usually referring to a group of people related by blood, marriage or adoption. This attribute also carries prefixes or suffixes which are part of the family name, e.g. "de Boer", "van de Putte", "von und zu Orlow". Multiple family names, such as are commonly found in Hispanic countries, are recorded in the single family name property so that, for example, Miguel de Cervantes Saavedra's family name would be recorded as "de Cervantes Saavedra".	
+      The complete name of the Person as one string.	It can be equal to or different from a Person's birth name. The birth name is used as a legal term, whereas the full name just gives a representation of the complete name of a Person.
+      In addition to the content of given name, family name and, in some systems, patronymic name, this can carry additional parts of a person's name such as titles, middle names or suffixes like "the third" or names which are neither a given nor a family name. The full name is the most reliable label for an individual and as such its use is strongly encouraged, irrespective of whether that name is broken down using the more granular elements.
+    range: Text
+    domain_of: Person
+    multivalued: true
+    minimum_cardinality: 0
+    maximum_cardinality: 9999
+  
+  fullName:
+    title: full name
+    slot_uri: foaf:name
+    description: The complete name of the Person as one string.	
+    comments:
+      It is anticipated that some systems will only provide or process the full name of a person. Where an individual has more than one full legal name (a relatively rare but not unknown phenomenon), the full name property can be used more than once. In this case, however, the granular name elements should not be used since the intention is that these provide a breakdown of the full name and it will not be clear of which full name this is true. Note that the vocabulary provides an alternative name property. This allows name(s) to be recorded that have no legal status but that nevertheless are the names by which an individual is generally known.
+      A name usually sticks with a person for a long time period. In some European countries a name may only be changed according to certain laws and life events, e.g. marriage. The name denominates a natural person even if he/she changes their address. Documents like birth certificate or diploma usually don't carry an address but always the name. Thus the name is one of the core attributes. However it is not sufficient to identify a person since there are combinations of very common names like Smith in the UK, Meier in Germany, or Li in China.
+    range: Text
+    domain_of: Person
+    multivalued: true
+    minimum_cardinality: 0
+    maximum_cardinality: 9999
+  
+  givenName:
+    title: given name
+    slot_uri: foaf:givenName
+    description: The name(s) that identify the Person within a family with a common surname.	
+    comments:
+      Usually a first name or forename. Given to a person by his or her parents at birth or legally recognised as 'given names' through a formal process. All given names are ordered in one property so that, for example, the given name for Johann Sebastian Bach is "Johann Sebastian".
+    range: Text
+    domain_of: Person
+    multivalued: true
+    minimum_cardinality: 0
+    maximum_cardinality: 9999
+  
+  hasEmail:
+    title: has email
+    slot_uri: m8g:email
+    description: An electronic address through which the Contact Point can be contacted.	
+    range: Literal
+    domain_of: ContactPoint
+    multivalued: true
+    minimum_cardinality: 0
+    maximum_cardinality: 9999
+  
+  hasTelephone:
+    title: has telephone
+    slot_uri: m8g:telephone
+    description: A telephone number through which the Contact Point can be contacted.	
+    range: Literal
+    domain_of: ContactPoint
+    multivalued: true
+    minimum_cardinality: 0
+    maximum_cardinality: 9999
+
+# Definition of types
+types:
+  Literal:
+    uri: rdfs:Literal
+    base: str
+  
+  GenericDate:
+    uri: m8g:GenericDate
+    base: str
+  
+  Text:
+    uri: rdf:langString
+    base: str

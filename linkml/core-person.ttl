@@ -1,0 +1,445 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix linkml: <https://w3id.org/linkml/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema1: <http://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix shex: <http://www.w3.org/ns/shex#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://data.europa.eu/m8g/core-person-voc> a linkml:SchemaDefinition ;
+    dcterms:license "https://creativecommons.org/publicdomain/zero/1.0/" ;
+    sh:declare [ sh:namespace xsd: ;
+            sh:prefix "xsd" ],
+        [ sh:namespace <http://www.w3.org/ns/person#> ;
+            sh:prefix "person" ],
+        [ sh:namespace foaf: ;
+            sh:prefix "foaf" ],
+        [ sh:namespace skos: ;
+            sh:prefix "skos" ],
+        [ sh:namespace linkml: ;
+            sh:prefix "linkml" ],
+        [ sh:namespace rdfs: ;
+            sh:prefix "rdfs" ],
+        [ sh:namespace owl: ;
+            sh:prefix "owl" ],
+        [ sh:namespace <http://data.europa.eu/m8g/> ;
+            sh:prefix "m8g" ],
+        [ sh:namespace rdf: ;
+            sh:prefix "rdf" ] ;
+    linkml:classes <http://data.europa.eu/m8g/ContactPoint>,
+        <http://data.europa.eu/m8g/Person> ;
+    linkml:default_curi_maps "semweb_context" ;
+    linkml:default_prefix "http://data.europa.eu/m8g/" ;
+    linkml:default_range <http://data.europa.eu/m8g/string> ;
+    linkml:generation_date "2025-05-14T16:59:48"^^xsd:dateTime ;
+    linkml:id <http://data.europa.eu/m8g/> ;
+    linkml:imports linkml:types ;
+    linkml:metamodel_version "1.7.0" ;
+    linkml:slots <http://data.europa.eu/m8g/birthDate>,
+        <http://data.europa.eu/m8g/birthName>,
+        <http://data.europa.eu/m8g/deathDate>,
+        <http://data.europa.eu/m8g/familyName>,
+        <http://data.europa.eu/m8g/fullName>,
+        <http://data.europa.eu/m8g/givenName>,
+        <http://data.europa.eu/m8g/hasEmail>,
+        <http://data.europa.eu/m8g/hasTelephone> ;
+    linkml:source_file "core-person.yaml" ;
+    linkml:source_file_date "2025-05-14T16:59:45"^^xsd:dateTime ;
+    linkml:source_file_size 7901 ;
+    linkml:types <http://data.europa.eu/m8g/GenericDate>,
+        <http://data.europa.eu/m8g/Literal>,
+        <http://data.europa.eu/m8g/Text>,
+        <http://data.europa.eu/m8g/boolean>,
+        <http://data.europa.eu/m8g/curie>,
+        <http://data.europa.eu/m8g/date>,
+        <http://data.europa.eu/m8g/date_or_datetime>,
+        <http://data.europa.eu/m8g/datetime>,
+        <http://data.europa.eu/m8g/decimal>,
+        <http://data.europa.eu/m8g/double>,
+        <http://data.europa.eu/m8g/float>,
+        <http://data.europa.eu/m8g/integer>,
+        <http://data.europa.eu/m8g/jsonpath>,
+        <http://data.europa.eu/m8g/jsonpointer>,
+        <http://data.europa.eu/m8g/ncname>,
+        <http://data.europa.eu/m8g/nodeidentifier>,
+        <http://data.europa.eu/m8g/objectidentifier>,
+        <http://data.europa.eu/m8g/sparqlpath>,
+        <http://data.europa.eu/m8g/string>,
+        <http://data.europa.eu/m8g/time>,
+        <http://data.europa.eu/m8g/uri>,
+        <http://data.europa.eu/m8g/uriorcurie> .
+
+<http://data.europa.eu/m8g/boolean> a linkml:TypeDefinition ;
+    skos:definition "A binary (true or false) value" ;
+    skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"boolean\"." ;
+    skos:exactMatch schema1:Boolean ;
+    skos:inScheme linkml:types ;
+    linkml:base "Bool" ;
+    linkml:definition_uri linkml:Boolean ;
+    linkml:imported_from "linkml:types" ;
+    linkml:repr "bool" ;
+    linkml:uri xsd:boolean .
+
+<http://data.europa.eu/m8g/curie> a linkml:TypeDefinition ;
+    dcterms:conformsTo "https://www.w3.org/TR/curie/" ;
+    skos:definition "a compact URI" ;
+    skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"curie\"." ;
+    skos:inScheme linkml:types ;
+    skos:note "in RDF serializations this MUST be expanded to a URI",
+        "in non-RDF serializations MAY be serialized as the compact representation" ;
+    linkml:base "Curie" ;
+    linkml:definition_uri linkml:Curie ;
+    linkml:imported_from "linkml:types" ;
+    linkml:repr "str" ;
+    linkml:uri xsd:string .
+
+<http://data.europa.eu/m8g/date> a linkml:TypeDefinition ;
+    skos:definition "a date (year, month and day) in an idealized calendar" ;
+    skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date\".",
+        "URI is dateTime because OWL reasoners don't work with straight date or time" ;
+    skos:exactMatch schema1:Date ;
+    skos:inScheme linkml:types ;
+    linkml:base "XSDDate" ;
+    linkml:definition_uri linkml:Date ;
+    linkml:imported_from "linkml:types" ;
+    linkml:repr "str" ;
+    linkml:uri xsd:date .
+
+<http://data.europa.eu/m8g/date_or_datetime> a linkml:TypeDefinition ;
+    skos:definition "Either a date or a datetime" ;
+    skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date_or_datetime\"." ;
+    skos:inScheme linkml:types ;
+    linkml:base "str" ;
+    linkml:definition_uri linkml:DateOrDatetime ;
+    linkml:imported_from "linkml:types" ;
+    linkml:repr "str" ;
+    linkml:uri linkml:DateOrDatetime .
+
+<http://data.europa.eu/m8g/datetime> a linkml:TypeDefinition ;
+    skos:definition "The combination of a date and time" ;
+    skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"datetime\"." ;
+    skos:exactMatch schema1:DateTime ;
+    skos:inScheme linkml:types ;
+    linkml:base "XSDDateTime" ;
+    linkml:definition_uri linkml:Datetime ;
+    linkml:imported_from "linkml:types" ;
+    linkml:repr "str" ;
+    linkml:uri xsd:dateTime .
+
+<http://data.europa.eu/m8g/decimal> a linkml:TypeDefinition ;
+    skos:broadMatch schema1:Number ;
+    skos:definition "A real number with arbitrary precision that conforms to the xsd:decimal specification" ;
+    skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"decimal\"." ;
+    skos:inScheme linkml:types ;
+    linkml:base "Decimal" ;
+    linkml:definition_uri linkml:Decimal ;
+    linkml:imported_from "linkml:types" ;
+    linkml:uri xsd:decimal .
+
+<http://data.europa.eu/m8g/double> a linkml:TypeDefinition ;
+    skos:closeMatch schema1:Float ;
+    skos:definition "A real number that conforms to the xsd:double specification" ;
+    skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"double\"." ;
+    skos:inScheme linkml:types ;
+    linkml:base "float" ;
+    linkml:definition_uri linkml:Double ;
+    linkml:imported_from "linkml:types" ;
+    linkml:uri xsd:double .
+
+<http://data.europa.eu/m8g/float> a linkml:TypeDefinition ;
+    skos:definition "A real number that conforms to the xsd:float specification" ;
+    skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"float\"." ;
+    skos:exactMatch schema1:Float ;
+    skos:inScheme linkml:types ;
+    linkml:base "float" ;
+    linkml:definition_uri linkml:Float ;
+    linkml:imported_from "linkml:types" ;
+    linkml:uri xsd:float .
+
+<http://data.europa.eu/m8g/integer> a linkml:TypeDefinition ;
+    skos:definition "An integer" ;
+    skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"integer\"." ;
+    skos:exactMatch schema1:Integer ;
+    skos:inScheme linkml:types ;
+    linkml:base "int" ;
+    linkml:definition_uri linkml:Integer ;
+    linkml:imported_from "linkml:types" ;
+    linkml:uri xsd:integer .
+
+<http://data.europa.eu/m8g/jsonpath> a linkml:TypeDefinition ;
+    dcterms:conformsTo "https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html" ;
+    skos:definition "A string encoding a JSON Path. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded in tree form." ;
+    skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpath\"." ;
+    skos:inScheme linkml:types ;
+    linkml:base "str" ;
+    linkml:definition_uri linkml:Jsonpath ;
+    linkml:imported_from "linkml:types" ;
+    linkml:repr "str" ;
+    linkml:uri xsd:string .
+
+<http://data.europa.eu/m8g/jsonpointer> a linkml:TypeDefinition ;
+    dcterms:conformsTo "https://datatracker.ietf.org/doc/html/rfc6901" ;
+    skos:definition "A string encoding a JSON Pointer. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to a valid object within the current instance document when encoded in tree form." ;
+    skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpointer\"." ;
+    skos:inScheme linkml:types ;
+    linkml:base "str" ;
+    linkml:definition_uri linkml:Jsonpointer ;
+    linkml:imported_from "linkml:types" ;
+    linkml:repr "str" ;
+    linkml:uri xsd:string .
+
+<http://data.europa.eu/m8g/ncname> a linkml:TypeDefinition ;
+    skos:definition "Prefix part of CURIE" ;
+    skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"ncname\"." ;
+    skos:inScheme linkml:types ;
+    linkml:base "NCName" ;
+    linkml:definition_uri linkml:Ncname ;
+    linkml:imported_from "linkml:types" ;
+    linkml:repr "str" ;
+    linkml:uri xsd:string .
+
+<http://data.europa.eu/m8g/nodeidentifier> a linkml:TypeDefinition ;
+    skos:definition "A URI, CURIE or BNODE that represents a node in a model." ;
+    skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"nodeidentifier\"." ;
+    skos:inScheme linkml:types ;
+    linkml:base "NodeIdentifier" ;
+    linkml:definition_uri linkml:Nodeidentifier ;
+    linkml:imported_from "linkml:types" ;
+    linkml:repr "str" ;
+    linkml:uri shex:nonLiteral .
+
+<http://data.europa.eu/m8g/objectidentifier> a linkml:TypeDefinition ;
+    skos:definition "A URI or CURIE that represents an object in the model." ;
+    skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"objectidentifier\"." ;
+    skos:inScheme linkml:types ;
+    skos:note "Used for inheritance and type checking" ;
+    linkml:base "ElementIdentifier" ;
+    linkml:definition_uri linkml:Objectidentifier ;
+    linkml:imported_from "linkml:types" ;
+    linkml:repr "str" ;
+    linkml:uri shex:iri .
+
+<http://data.europa.eu/m8g/sparqlpath> a linkml:TypeDefinition ;
+    dcterms:conformsTo "https://www.w3.org/TR/sparql11-query/#propertypaths" ;
+    skos:definition "A string encoding a SPARQL Property Path. The value of the string MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded as RDF." ;
+    skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"sparqlpath\"." ;
+    skos:inScheme linkml:types ;
+    linkml:base "str" ;
+    linkml:definition_uri linkml:Sparqlpath ;
+    linkml:imported_from "linkml:types" ;
+    linkml:repr "str" ;
+    linkml:uri xsd:string .
+
+<http://data.europa.eu/m8g/time> a linkml:TypeDefinition ;
+    skos:definition "A time object represents a (local) time of day, independent of any particular day" ;
+    skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"time\".",
+        "URI is dateTime because OWL reasoners do not work with straight date or time" ;
+    skos:exactMatch schema1:Time ;
+    skos:inScheme linkml:types ;
+    linkml:base "XSDTime" ;
+    linkml:definition_uri linkml:Time ;
+    linkml:imported_from "linkml:types" ;
+    linkml:repr "str" ;
+    linkml:uri xsd:time .
+
+<http://data.europa.eu/m8g/uri> a linkml:TypeDefinition ;
+    dcterms:conformsTo "https://www.ietf.org/rfc/rfc3987.txt" ;
+    skos:closeMatch schema1:URL ;
+    skos:definition "a complete URI" ;
+    skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uri\"." ;
+    skos:inScheme linkml:types ;
+    skos:note "in RDF serializations a slot with range of uri is treated as a literal or type xsd:anyURI unless it is an identifier or a reference to an identifier, in which case it is translated directly to a node" ;
+    linkml:base "URI" ;
+    linkml:definition_uri linkml:Uri ;
+    linkml:imported_from "linkml:types" ;
+    linkml:repr "str" ;
+    linkml:uri xsd:anyURI .
+
+<http://data.europa.eu/m8g/uriorcurie> a linkml:TypeDefinition ;
+    skos:definition "a URI or a CURIE" ;
+    skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uriorcurie\"." ;
+    skos:inScheme linkml:types ;
+    linkml:base "URIorCURIE" ;
+    linkml:definition_uri linkml:Uriorcurie ;
+    linkml:imported_from "linkml:types" ;
+    linkml:repr "str" ;
+    linkml:uri xsd:anyURI .
+
+<http://data.europa.eu/m8g/birthName> a linkml:SlotDefinition ;
+    dcterms:title "birth name" ;
+    skos:definition "Full name of the Person given upon their birth." ;
+    skos:inScheme <http://data.europa.eu/m8g/> ;
+    skos:mappingRelation <http://www.w3.org/ns/person#birthName> ;
+    skos:note "The birth name may apply to the surname, the given name, or the entire name. Where births are required to be officially registered, the entire name entered onto a births register or birth certificate may by that fact alone become the person's legal name. See Wikipedia Birth name page. All data associated with an individual are subject to change. Names can change for a variety of reasons, either formally or informally, and new information may come to light that means that a correction or clarification can be made to an existing record. Birth names tend to be persistent however and for this reason they are recorded by some public sector information systems. There is no granularity for birth name - the full name should be recorded in a single field." ;
+    linkml:definition_uri <http://data.europa.eu/m8g//birthName> ;
+    linkml:domain_of <http://data.europa.eu/m8g/Person> ;
+    linkml:maximum_cardinality 9999 ;
+    linkml:minimum_cardinality 0 ;
+    linkml:multivalued true ;
+    linkml:owner <http://data.europa.eu/m8g/Person> ;
+    linkml:range <http://data.europa.eu/m8g/Text> ;
+    linkml:slot_uri <http://www.w3.org/ns/person#birthName> .
+
+<http://data.europa.eu/m8g/familyName> a linkml:SlotDefinition ;
+    dcterms:title "family name" ;
+    skos:definition "The hereditary surname of a family." ;
+    skos:inScheme <http://data.europa.eu/m8g/> ;
+    skos:mappingRelation foaf:familyName ;
+    skos:note "Usually referring to a group of people related by blood, marriage or adoption. This attribute also carries prefixes or suffixes which are part of the family name, e.g. \"de Boer\", \"van de Putte\", \"von und zu Orlow\". Multiple family names, such as are commonly found in Hispanic countries, are recorded in the single family name property so that, for example, Miguel de Cervantes Saavedra's family name would be recorded as \"de Cervantes Saavedra\". The complete name of the Person as one string.	It can be equal to or different from a Person's birth name. The birth name is used as a legal term, whereas the full name just gives a representation of the complete name of a Person. In addition to the content of given name, family name and, in some systems, patronymic name, this can carry additional parts of a person's name such as titles, middle names or suffixes like \"the third\" or names which are neither a given nor a family name. The full name is the most reliable label for an individual and as such its use is strongly encouraged, irrespective of whether that name is broken down using the more granular elements." ;
+    linkml:definition_uri <http://data.europa.eu/m8g//familyName> ;
+    linkml:domain_of <http://data.europa.eu/m8g/Person> ;
+    linkml:maximum_cardinality 9999 ;
+    linkml:minimum_cardinality 0 ;
+    linkml:multivalued true ;
+    linkml:owner <http://data.europa.eu/m8g/Person> ;
+    linkml:range <http://data.europa.eu/m8g/Text> ;
+    linkml:slot_uri foaf:familyName .
+
+<http://data.europa.eu/m8g/fullName> a linkml:SlotDefinition ;
+    dcterms:title "full name" ;
+    skos:definition "The complete name of the Person as one string." ;
+    skos:inScheme <http://data.europa.eu/m8g/> ;
+    skos:mappingRelation foaf:name ;
+    skos:note "It is anticipated that some systems will only provide or process the full name of a person. Where an individual has more than one full legal name (a relatively rare but not unknown phenomenon), the full name property can be used more than once. In this case, however, the granular name elements should not be used since the intention is that these provide a breakdown of the full name and it will not be clear of which full name this is true. Note that the vocabulary provides an alternative name property. This allows name(s) to be recorded that have no legal status but that nevertheless are the names by which an individual is generally known. A name usually sticks with a person for a long time period. In some European countries a name may only be changed according to certain laws and life events, e.g. marriage. The name denominates a natural person even if he/she changes their address. Documents like birth certificate or diploma usually don't carry an address but always the name. Thus the name is one of the core attributes. However it is not sufficient to identify a person since there are combinations of very common names like Smith in the UK, Meier in Germany, or Li in China." ;
+    linkml:definition_uri <http://data.europa.eu/m8g//fullName> ;
+    linkml:domain_of <http://data.europa.eu/m8g/Person> ;
+    linkml:maximum_cardinality 9999 ;
+    linkml:minimum_cardinality 0 ;
+    linkml:multivalued true ;
+    linkml:owner <http://data.europa.eu/m8g/Person> ;
+    linkml:range <http://data.europa.eu/m8g/Text> ;
+    linkml:slot_uri foaf:name .
+
+<http://data.europa.eu/m8g/givenName> a linkml:SlotDefinition ;
+    dcterms:title "given name" ;
+    skos:definition "The name(s) that identify the Person within a family with a common surname." ;
+    skos:inScheme <http://data.europa.eu/m8g/> ;
+    skos:mappingRelation foaf:givenName ;
+    skos:note "Usually a first name or forename. Given to a person by his or her parents at birth or legally recognised as 'given names' through a formal process. All given names are ordered in one property so that, for example, the given name for Johann Sebastian Bach is \"Johann Sebastian\"." ;
+    linkml:definition_uri <http://data.europa.eu/m8g//givenName> ;
+    linkml:domain_of <http://data.europa.eu/m8g/Person> ;
+    linkml:maximum_cardinality 9999 ;
+    linkml:minimum_cardinality 0 ;
+    linkml:multivalued true ;
+    linkml:owner <http://data.europa.eu/m8g/Person> ;
+    linkml:range <http://data.europa.eu/m8g/Text> ;
+    linkml:slot_uri foaf:givenName .
+
+<http://data.europa.eu/m8g/hasEmail> a linkml:SlotDefinition ;
+    dcterms:title "has email" ;
+    skos:definition "An electronic address through which the Contact Point can be contacted." ;
+    skos:inScheme <http://data.europa.eu/m8g/> ;
+    skos:mappingRelation <http://data.europa.eu/m8g/email> ;
+    linkml:definition_uri <http://data.europa.eu/m8g//hasEmail> ;
+    linkml:domain_of <http://data.europa.eu/m8g/ContactPoint> ;
+    linkml:maximum_cardinality 9999 ;
+    linkml:minimum_cardinality 0 ;
+    linkml:multivalued true ;
+    linkml:owner <http://data.europa.eu/m8g/ContactPoint> ;
+    linkml:range <http://data.europa.eu/m8g/Literal> ;
+    linkml:slot_uri <http://data.europa.eu/m8g/email> .
+
+<http://data.europa.eu/m8g/hasTelephone> a linkml:SlotDefinition ;
+    dcterms:title "has telephone" ;
+    skos:definition "A telephone number through which the Contact Point can be contacted." ;
+    skos:inScheme <http://data.europa.eu/m8g/> ;
+    skos:mappingRelation <http://data.europa.eu/m8g/telephone> ;
+    linkml:definition_uri <http://data.europa.eu/m8g//hasTelephone> ;
+    linkml:domain_of <http://data.europa.eu/m8g/ContactPoint> ;
+    linkml:maximum_cardinality 9999 ;
+    linkml:minimum_cardinality 0 ;
+    linkml:multivalued true ;
+    linkml:owner <http://data.europa.eu/m8g/ContactPoint> ;
+    linkml:range <http://data.europa.eu/m8g/Literal> ;
+    linkml:slot_uri <http://data.europa.eu/m8g/telephone> .
+
+<http://data.europa.eu/m8g/string> a linkml:TypeDefinition ;
+    skos:definition "A character string" ;
+    skos:editorialNote "In RDF serializations, a slot with range of string is treated as a literal or type xsd:string.   If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"string\"." ;
+    skos:exactMatch schema1:Text ;
+    skos:inScheme linkml:types ;
+    linkml:base "str" ;
+    linkml:definition_uri linkml:String ;
+    linkml:imported_from "linkml:types" ;
+    linkml:uri xsd:string .
+
+<http://data.europa.eu/m8g/Literal> a linkml:TypeDefinition ;
+    skos:inScheme <http://data.europa.eu/m8g/> ;
+    linkml:base "str" ;
+    linkml:definition_uri <http://data.europa.eu/m8g//Literal> ;
+    linkml:uri rdfs:Literal .
+
+<http://data.europa.eu/m8g/GenericDate> a linkml:TypeDefinition ;
+    skos:inScheme <http://data.europa.eu/m8g/> ;
+    linkml:base "str" ;
+    linkml:definition_uri <http://data.europa.eu/m8g//GenericDate> ;
+    linkml:uri <http://data.europa.eu/m8g/GenericDate> .
+
+<http://data.europa.eu/m8g/birthDate> a linkml:SlotDefinition ;
+    dcterms:title "date of birth" ;
+    skos:definition "The point in time on which the Person was born." ;
+    skos:inScheme <http://data.europa.eu/m8g/> ;
+    skos:mappingRelation <http://data.europa.eu/m8g/birthDate> ;
+    skos:note "The date of birth could be expressed as date, gYearMonth or gYear, example; - 1980-09-16^^xs:date - 1980-09^^xs:gYearMonth - 1980^^xs:gYear" ;
+    linkml:definition_uri <http://data.europa.eu/m8g//birthDate> ;
+    linkml:domain_of <http://data.europa.eu/m8g/Person> ;
+    linkml:maximum_cardinality 9999 ;
+    linkml:minimum_cardinality 0 ;
+    linkml:multivalued true ;
+    linkml:owner <http://data.europa.eu/m8g/Person> ;
+    linkml:range <http://data.europa.eu/m8g/GenericDate> ;
+    linkml:slot_uri <http://data.europa.eu/m8g/birthDate> .
+
+<http://data.europa.eu/m8g/deathDate> a linkml:SlotDefinition ;
+    dcterms:title "date of death" ;
+    skos:definition "The point in time on which the Person died." ;
+    skos:inScheme <http://data.europa.eu/m8g/> ;
+    skos:mappingRelation <http://data.europa.eu/m8g/deathDate> ;
+    skos:note "The date of birth could be expressed as date, gYearMonth or gYear, example; - 1980-09-16^^xs:date - 1980-09^^xs:gYearMonth - 1980^^xs:gYear" ;
+    linkml:definition_uri <http://data.europa.eu/m8g//deathDate> ;
+    linkml:domain_of <http://data.europa.eu/m8g/Person> ;
+    linkml:maximum_cardinality 9999 ;
+    linkml:minimum_cardinality 0 ;
+    linkml:multivalued true ;
+    linkml:owner <http://data.europa.eu/m8g/Person> ;
+    linkml:range <http://data.europa.eu/m8g/GenericDate> ;
+    linkml:slot_uri <http://data.europa.eu/m8g/deathDate> .
+
+<http://data.europa.eu/m8g/Text> a linkml:TypeDefinition ;
+    skos:inScheme <http://data.europa.eu/m8g/> ;
+    linkml:base "str" ;
+    linkml:definition_uri <http://data.europa.eu/m8g//Text> ;
+    linkml:uri rdf:langString .
+
+<http://data.europa.eu/m8g/ContactPoint> a linkml:ClassDefinition ;
+    dcterms:title "Contact Point" ;
+    skos:definition "Information (e.g. e-mail address, telephone number) of a person or department through which the user can get in touch with." ;
+    skos:inScheme <http://data.europa.eu/m8g/> ;
+    skos:mappingRelation <m8g:ContactPoint> ;
+    skos:note "The Core Public Organization Vocabulary defines properties for telephone number, e-mail address and opening hours although it is noteworthy that the class is based on schema.org's ContactPoint class that has additional properties that some implementations may find useful." ;
+    linkml:class_uri <http://data.europa.eu/m8g/ContactPoint> ;
+    linkml:definition_uri <http://data.europa.eu/m8g//ContactPoint> ;
+    linkml:slot_usage [ ] ;
+    linkml:slots <http://data.europa.eu/m8g/hasEmail>,
+        <http://data.europa.eu/m8g/hasTelephone> .
+
+<http://data.europa.eu/m8g/Person> a linkml:ClassDefinition ;
+    dcterms:title "Person" ;
+    skos:definition "A individual human being who may be dead or alive, but not imaginary." ;
+    skos:inScheme <http://data.europa.eu/m8g/> ;
+    skos:mappingRelation <person:Person> ;
+    skos:note "The Core Public Organization Vocabulary defines properties for telephone number, e-mail address and opening hours although it is noteworthy that the class is based on schema.org's ContactPoint class that has additional properties that some implementations may find useful." ;
+    linkml:class_uri <http://www.w3.org/ns/person#Person> ;
+    linkml:definition_uri <http://data.europa.eu/m8g//Person> ;
+    linkml:slot_usage [ ] ;
+    linkml:slots <http://data.europa.eu/m8g/birthDate>,
+        <http://data.europa.eu/m8g/birthName>,
+        <http://data.europa.eu/m8g/deathDate>,
+        <http://data.europa.eu/m8g/familyName>,
+        <http://data.europa.eu/m8g/fullName>,
+        <http://data.europa.eu/m8g/givenName> .
+
