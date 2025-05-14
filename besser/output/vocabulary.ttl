@@ -4,50 +4,49 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # Class definition
-ex:Library rdf:type rdfs:Class .
+ex:Person rdf:type rdfs:Class .
 
-ex:Author rdf:type rdfs:Class .
-
-ex:Book rdf:type rdfs:Class .
+ex:Address rdf:type rdfs:Class .
 
 
 # Property definition
-ex:name rdf:type rdf:Property ;
-        rdfs:domain ex:Library ;
-        rdfs:range xsd:string .
-
-ex:address rdf:type rdf:Property ;
-        rdfs:domain ex:Library ;
-        rdfs:range xsd:string .
-
-ex:name rdf:type rdf:Property ;
-        rdfs:domain ex:Author ;
-        rdfs:range xsd:string .
-
-ex:email rdf:type rdf:Property ;
-        rdfs:domain ex:Author ;
-        rdfs:range xsd:string .
-
-ex:pages rdf:type rdf:Property ;
-        rdfs:domain ex:Book ;
-        rdfs:range xsd:integer .
-
-ex:release rdf:type rdf:Property ;
-        rdfs:domain ex:Book ;
+ex:deathDate rdf:type rdf:Property ;
+        rdfs:domain ex:Person ;
         rdfs:range xsd:date .
 
-ex:title rdf:type rdf:Property ;
-        rdfs:domain ex:Book ;
+ex:birthDate rdf:type rdf:Property ;
+        rdfs:domain ex:Person ;
+        rdfs:range xsd:date .
+
+ex:fullName rdf:type rdf:Property ;
+        rdfs:domain ex:Person ;
         rdfs:range xsd:string .
+
+ex:familyName rdf:type rdf:Property ;
+        rdfs:domain ex:Person ;
+        rdfs:range xsd:string .
+
+ex:givenName rdf:type rdf:Property ;
+        rdfs:domain ex:Person ;
+        rdfs:range xsd:string .
+
+ex:birthName rdf:type rdf:Property ;
+        rdfs:domain ex:Person ;
+        rdfs:range xsd:string .
+
+ex:postName rdf:type rdf:Property ;
+        rdfs:domain ex:Address ;
+        rdfs:range xsd:string .
+
+ex:postCode rdf:type rdf:Property ;
+        rdfs:domain ex:Address ;
+        rdfs:range xsd:integer .
 
 
 # Relationship Definition
-ex:lib_book_assoc rdf:type rdf:Property ;
-    rdfs:domain ex:Book ;
-    rdfs:range ex:Library .
      
-ex:book_author_assoc rdf:type rdf:Property ;
-    rdfs:domain ex:Author ;
-    rdfs:range ex:Book .
+ex:domicile rdf:type rdf:Property ;
+    rdfs:domain ex:Address ;
+    rdfs:range ex:Person .
 
 # Enumeration definition
