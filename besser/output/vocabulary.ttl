@@ -12,13 +12,13 @@ ex:Person rdf:type rdfs:Class .
 
 
 # Property definition
-ex:postName rdf:type rdf:Property ;
-        rdfs:domain ex:Address ;
-        rdfs:range xsd:string .
-
 ex:postCode rdf:type rdf:Property ;
         rdfs:domain ex:Address ;
         rdfs:range xsd:integer .
+
+ex:postName rdf:type rdf:Property ;
+        rdfs:domain ex:Address ;
+        rdfs:range xsd:string .
 
 ex:hasEmail rdf:type rdf:Property ;
         rdfs:domain ex:ContactPoint ;
@@ -28,6 +28,22 @@ ex:hasTelephone rdf:type rdf:Property ;
         rdfs:domain ex:ContactPoint ;
         rdfs:range xsd:string .
 
+ex:contactPage rdf:type rdf:Property ;
+        rdfs:domain ex:ContactPoint ;
+        rdfs:range xsd:any .
+
+ex:birthName rdf:type rdf:Property ;
+        rdfs:domain ex:Person ;
+        rdfs:range xsd:string .
+
+ex:givenName rdf:type rdf:Property ;
+        rdfs:domain ex:Person ;
+        rdfs:range xsd:string .
+
+ex:birthDate rdf:type rdf:Property ;
+        rdfs:domain ex:Person ;
+        rdfs:range xsd:date .
+
 ex:fullName rdf:type rdf:Property ;
         rdfs:domain ex:Person ;
         rdfs:range xsd:string .
@@ -36,19 +52,7 @@ ex:deathDate rdf:type rdf:Property ;
         rdfs:domain ex:Person ;
         rdfs:range xsd:date .
 
-ex:birthDate rdf:type rdf:Property ;
-        rdfs:domain ex:Person ;
-        rdfs:range xsd:date .
-
-ex:givenName rdf:type rdf:Property ;
-        rdfs:domain ex:Person ;
-        rdfs:range xsd:string .
-
 ex:familyName rdf:type rdf:Property ;
-        rdfs:domain ex:Person ;
-        rdfs:range xsd:string .
-
-ex:birthName rdf:type rdf:Property ;
         rdfs:domain ex:Person ;
         rdfs:range xsd:string .
 
@@ -60,7 +64,7 @@ ex:domicile_test rdf:type rdf:Property ;
     rdfs:range ex:Address .
      
 ex:contactPoint_test rdf:type rdf:Property ;
-    rdfs:domain ex:ContactPoint ;
-    rdfs:range ex:Person .
+    rdfs:domain ex:Person ;
+    rdfs:range ex:ContactPoint .
 
 # Enumeration definition

@@ -1,5 +1,5 @@
 from besser.BUML.metamodel.structural import DomainModel, Class, Property, \
-    Multiplicity, StringType, IntegerType, DateType, Association, BinaryAssociation
+    Multiplicity, StringType, IntegerType, DateType, Association, BinaryAssociation, AnyType
 from besser.generators.rdf import RDFGenerator
 
 # Person attributes definition
@@ -17,8 +17,9 @@ person: Class = Class(name="Person", attributes={person_birthName, person_birthD
 
 contactpoint_hasEmail: Property = Property(name="hasEmail", type=StringType)
 contactpoint_hasTelephone: Property = Property(name="hasTelephone", type=StringType)
+contactpoint_contactPage: Property = Property(name="contactPage", type=AnyType)
 # ContactPoint class definition
-contactpoint: Class = Class(name="ContactPoint", attributes={contactpoint_hasEmail, contactpoint_hasTelephone})
+contactpoint: Class = Class(name="ContactPoint", attributes={contactpoint_hasEmail, contactpoint_hasTelephone, contactpoint_contactPage})
 
 # Address attributes definition
 address_postName: Property = Property(name="postName", type=StringType)
@@ -33,7 +34,7 @@ person_contactpoint_association: Association = Association(name="contactPoint_te
 
 # Person-Address association definition
 person_address_domicile: Property = Property(name="domicile", type=address, multiplicity=Multiplicity(0, "*"))
-address_person_has: Property = Property(name="has", owner=None, type=person, multiplicity=Multiplicity(0, "*"))
+address_person_has: Property = Property(name="", owner=None, type=person, multiplicity=Multiplicity(0, "*"))
 person_address_association: Association = Association(name="domicile_test", ends={person_address_domicile, address_person_has})
 
 # Domain model definition
