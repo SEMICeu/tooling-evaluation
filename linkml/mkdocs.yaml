@@ -1,33 +1,48 @@
-site_name: Core Person Vocabulary Documentation
+site_name: Core Person Vocabluary
+site_description: Documentation of the Core Person Vocabulary
+site_author: Arthur Schiltz
+repo_url: https://github.com/SEMICeu/Core-Person-Vocabulary/
+repo_name: Core Person Vocabulary
+
+# Theme configuration
 theme:
-  name: material
+  name: material  # or readthedocs, mkdocs, etc.
   palette:
-    primary: blue
+    primary: black
+    accent: blue
   features:
-    - content.code.copy
+    - toc.integrate        # Integrates TOC into the sidebar
+    - navigation.top       # Back to top button
+    - navigation.tracking  # Update URL with current heading
+
+# Navigation structure
 nav:
-  - Home: index.md
-  - Classes:
-      - Person: Person.md
-      - ContactPoint: ContactPoint.md
-  - Slots:
-      - contactPoint: contactPoint.md
-      - birthName: birthName.md
-      - birthDate: birthDate.md
-      - deathDate: deathDate.md
-      - familyName: familyName.md
-      - fullName: fullName.md
-      - givenName: givenName.md
-      - hasEmail: hasEmail.md
-      - hasTelephone: hasTelephone.md
+  - Documentation: index.md
+
+
+# Extensions for better TOC
 markdown_extensions:
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
-  - pymdownx.tabbed
-  - attr_list
+  - toc:
+      toc_depth: 4            # Show up to h4 headings in TOC
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - admonition
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      base_path: docs          # Base path for snippet includes
+      check_paths: true        # Check if included files exist
+
+# Plugins
 plugins:
-  - search
-  - mermaid2
+  - awesome-pages  # Optional: for automatic navigation
+
+# Custom CSS (optional)
+extra_css:
+  - assets/css/custom.css
