@@ -1,0 +1,48 @@
+site_name: Core Person Vocabluary
+site_description: Documentation of the Core Person Vocabulary
+site_author: Arthur Schiltz
+repo_url: https://github.com/SEMICeu/Core-Person-Vocabulary/
+repo_name: Core Person Vocabulary
+
+# Theme configuration
+theme:
+  name: material  # or readthedocs, mkdocs, etc.
+  palette:
+    primary: black
+    accent: blue
+  features:
+    - toc.integrate        # Integrates TOC into the sidebar
+    - navigation.top       # Back to top button
+    - navigation.tracking  # Update URL with current heading
+
+# Navigation structure
+nav:
+  - Documentation: index.md
+
+
+# Extensions for better TOC
+markdown_extensions:
+  - toc:
+      toc_depth: 4            # Show up to h4 headings in TOC
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - admonition
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      base_path: docs          # Base path for snippet includes
+      check_paths: true        # Check if included files exist
+
+# Plugins
+plugins:
+  - awesome-pages  # Optional: for automatic navigation
+
+# Custom CSS (optional)
+extra_css:
+  - assets/css/custom.css
