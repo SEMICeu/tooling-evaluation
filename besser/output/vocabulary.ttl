@@ -4,67 +4,67 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # Class definition
-ex:Address rdf:type rdfs:Class .
-
-ex:ContactPoint rdf:type rdfs:Class .
-
-ex:Person rdf:type rdfs:Class .
-
+<http://www.w3.org/ns/locn#Address> rdf:type rdfs:Class ;
+          rdfs:comment "A spatial object that in a human-readable way identifies a fixed location." .
+<http://data.europa.eu/m8g/ContactPoint> rdf:type rdfs:Class ;
+          rdfs:comment "Information (e.g. e-mail address, telephone number) of a person or department through which the user can get in touch with." .
+<http://www.w3.org/ns/person#Person> rdf:type rdfs:Class ;
+          rdfs:comment "A individual human being who may be dead or alive, but not imaginary." .
 
 # Property definition
-ex:postCode rdf:type rdf:Property ;
-        rdfs:domain ex:Address ;
-        rdfs:range xsd:integer .
-
-ex:postName rdf:type rdf:Property ;
-        rdfs:domain ex:Address ;
-        rdfs:range xsd:string .
-
-ex:hasEmail rdf:type rdf:Property ;
-        rdfs:domain ex:ContactPoint ;
-        rdfs:range xsd:string .
-
-ex:hasTelephone rdf:type rdf:Property ;
-        rdfs:domain ex:ContactPoint ;
-        rdfs:range xsd:string .
-
-ex:contactPage rdf:type rdf:Property ;
-        rdfs:domain ex:ContactPoint ;
-        rdfs:range xsd:any .
-
-ex:birthName rdf:type rdf:Property ;
-        rdfs:domain ex:Person ;
-        rdfs:range xsd:string .
-
-ex:givenName rdf:type rdf:Property ;
-        rdfs:domain ex:Person ;
-        rdfs:range xsd:string .
-
-ex:birthDate rdf:type rdf:Property ;
-        rdfs:domain ex:Person ;
-        rdfs:range xsd:date .
-
-ex:fullName rdf:type rdf:Property ;
-        rdfs:domain ex:Person ;
-        rdfs:range xsd:string .
-
-ex:deathDate rdf:type rdf:Property ;
-        rdfs:domain ex:Person ;
-        rdfs:range xsd:date .
-
-ex:familyName rdf:type rdf:Property ;
-        rdfs:domain ex:Person ;
-        rdfs:range xsd:string .
-
+<http://www.w3.org/ns/locn#postName> rdf:type rdf:Property ;
+        rdfs:domain <http://www.w3.org/ns/locn#Address> ;
+        rdfs:range xsd:string ;
+        rdfs:comment "A name created and maintained for postal purposes to identify a subdivision of addresses and postal delivery points." .
+<http://www.w3.org/ns/locn#postCode> rdf:type rdf:Property ;
+        rdfs:domain <http://www.w3.org/ns/locn#Address> ;
+        rdfs:range xsd:integer ;
+        rdfs:comment "The code created and maintained for postal purposes to identify a subdivision of addresses and postal delivery points." .
+<http://data.europa.eu/m8g/contactPage> rdf:type rdf:Property ;
+        rdfs:domain <http://data.europa.eu/m8g/ContactPoint> ;
+        rdfs:range xsd:any ;
+        rdfs:comment "A web page that could be used to reach out the Contact Point." .
+<http://data.europa.eu/m8g/telephone> rdf:type rdf:Property ;
+        rdfs:domain <http://data.europa.eu/m8g/ContactPoint> ;
+        rdfs:range xsd:string ;
+        rdfs:comment "A telephone number through which the Contact Point can be contacted." .
+<http://data.europa.eu/m8g/email> rdf:type rdf:Property ;
+        rdfs:domain <http://data.europa.eu/m8g/ContactPoint> ;
+        rdfs:range xsd:string ;
+        rdfs:comment "	An electronic address through which the Contact Point can be contacted." .
+<http://www.w3.org/ns/person#birthName> rdf:type rdf:Property ;
+        rdfs:domain <http://www.w3.org/ns/person#Person> ;
+        rdfs:range xsd:string ;
+        rdfs:comment "Full name of the Person given upon their birth." .
+<http://data.europa.eu/m8g/deathDate> rdf:type rdf:Property ;
+        rdfs:domain <http://www.w3.org/ns/person#Person> ;
+        rdfs:range xsd:date ;
+        rdfs:comment "The point in time on which the Person died." .
+<http://data.europa.eu/m8g/birthDate> rdf:type rdf:Property ;
+        rdfs:domain <http://www.w3.org/ns/person#Person> ;
+        rdfs:range xsd:date ;
+        rdfs:comment "The point in time on which the Person was born." .
+<http://xmlns.com/foaf/0.1/familyName> rdf:type rdf:Property ;
+        rdfs:domain <http://www.w3.org/ns/person#Person> ;
+        rdfs:range xsd:string ;
+        rdfs:comment "The hereditary surname of a family." .
+<http://xmlns.com/foaf/0.1/givenName> rdf:type rdf:Property ;
+        rdfs:domain <http://www.w3.org/ns/person#Person> ;
+        rdfs:range xsd:string ;
+        rdfs:comment "The name(s) that identify the Person within a family with a common surname." .
+<http://xmlns.com/foaf/0.1/name> rdf:type rdf:Property ;
+        rdfs:domain <http://www.w3.org/ns/person#Person> ;
+        rdfs:range xsd:string ;
+        rdfs:comment "The complete name of the Person as one string." .
 
 # Relationship Definition
      
-ex:domicile_test rdf:type rdf:Property ;
-    rdfs:domain ex:Person ;
-    rdfs:range ex:Address .
+ex: rdf:type rdf:Property ;
+    rdfs:domain <http://www.w3.org/ns/locn#Address> ;
+    rdfs:range <http://www.w3.org/ns/person#Person> .
      
-ex:contactPoint_test rdf:type rdf:Property ;
-    rdfs:domain ex:Person ;
-    rdfs:range ex:ContactPoint .
+ex:has rdf:type rdf:Property ;
+    rdfs:domain <http://data.europa.eu/m8g/ContactPoint> ;
+    rdfs:range <http://www.w3.org/ns/person#Person> .
 
 # Enumeration definition
