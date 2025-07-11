@@ -3,7 +3,7 @@ from besser.BUML.metamodel.structural import DomainModel, Class, Property, \
 from besser.generators.rdf import RDFGenerator
 
 # Person attributes definition
-person_birthName: Property = Property(name="birthName", type=StringType, metadata=Metadata(synonyms=["birthName"],uri="http://www.w3.org/ns/person#birthName",description="Full name of the Person given upon their birth."))
+person_birthName: Property = Property(name="birthName", type=StringType, metadata=Metadata(uri="http://www.w3.org/ns/person#birthName",description="Full name of the Person given upon their birth."))
 person_birthDate: Property = Property(name="birthDate", type=DateType, metadata=Metadata(uri="http://data.europa.eu/m8g/birthDate",description="The point in time on which the Person was born."))
 person_deathDate: Property = Property(name="deathDate", type=DateType, metadata=Metadata(uri="http://data.europa.eu/m8g/deathDate", description="The point in time on which the Person died."))
 person_familyName: Property = Property(name="familyName", type=StringType, metadata=Metadata(uri="http://xmlns.com/foaf/0.1/familyName", description="The hereditary surname of a family."))
