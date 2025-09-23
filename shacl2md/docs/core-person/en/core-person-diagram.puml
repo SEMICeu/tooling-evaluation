@@ -1,0 +1,28 @@
+@startuml
+!theme vibrant
+skinparam classFontSize 14
+!define LIGHTORANGE
+skinparam componentStyle uml2
+skinparam wrapMessageWidth 1000
+skinparam wrapWidth 1000
+' skinparam ArrowColor #Maroon
+' Remove shadows
+skinparam shadowing false
+'skinparam linetype polyline
+skinparam ArrowMessageAlignment left
+top to bottom direction
+
+
+class "<b>Person</b> (ex:Person)" as ex_Person [[#ex%3APerson]]
+
+
+ex_Person : family name : <i>rdf:langString</i> [0..*]
+
+
+
+hide circle
+hide methods
+hide empty members
+@enduml
+
+

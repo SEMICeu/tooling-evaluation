@@ -1,0 +1,116 @@
+---
+{% for k, v in frontmatter.items() %}
+{{k}}: {% if v is number or v is boolean %}{{v}}{% else %}"{{v}}"{% endif %}
+
+{% endfor %}
+---
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><symbol id="svg-external-link" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title id="svg-external-link-title">(external link)</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line> </symbol></svg>
+
+{{doc.title}}
+====================
+
+**{{labels['Version']}}:** {{doc.version}}
+
+**{{labels['Prior version']}}:** {{doc.prior_version}}
+
+**{{labels['Created']}}:** {{doc.created}}
+
+**{{labels['Last modified']}}:** {{doc.modified}}
+
+**{{labels['SHACL file']}}:** [{{rdf_filename}}]({{rdf_filename}})
+
+**{{labels['Other languages']}}:**
+{% for lang in languages %}
+{% if loop.index > 1 %}, {% endif %}[{{lang}}](../{{lang}})
+{% endfor %}
+
+**{{labels['Authors']}}:**
+{% for author in doc.authors %}
+{% if loop.index > 1 %}, {% endif %}[{{author.label}}](mailto:{{author.email}})
+{% endfor %}
+
+
+{{doc.description}}
+
+<div id="zoom" class="table-wrapper">
+{{diagramText}}
+</div>
+
+## {{labels['Namespaces']}}
+
+| Prefix | URI      |
+| :----- | :------- |
+{% for prefix, iri in namespaces|sort %}
+| {{ prefix }}     | [{{iri}}]({{iri}}) |
+{% endfor %}
+
+## {{labels['Classes & Properties']}}
+
+**{{labels['Classes']}}:** 
+{% for class in classes %}
+{% if loop.index > 1 %} | {% endif %} [{{class.label}}{% if class.crosslink %} <svg class="svg-external-link" viewBox="0 0 24 24" aria-labelledby="svg-external-link-title"><use xlink:href="#svg-external-link"></use></svg>](../{% if output_dir_length == 2 %}../{% endif %}{{class.crosslink}}/{{class.lang}}#{{class.shortname|urlencode}}){:target="_blank"}{% else %}](#{{class.shortname|urlencode}}){% endif %}
+{% endfor %}
+
+{% for class in classes %}
+{% if class.crosslink is none %}
+## <a id="{{class.shortname|urlencode}}"></a>{{class.label}} <small>[({{class.shortname}})]({{class.iri}})</small>
+
+{# **URI:** [{{class.shortname}}]({{class.iri}}) <br> #}
+{% if class.superclasses is defined and class.superclasses|length > 0 %}
+
+**{{labels['Subclass of']}}:** 
+{% for parent in class.superclasses %}
+[{{parent.label}}](#{{parent.shortname|urlencode}})
+{% endfor %}
+{% endif %}
+{% if class.subclasses is defined and class.subclasses|length > 0%}
+
+**{{labels['Subclasses']}}:** 
+{% for child in class.subclasses %}
+{% if loop.index > 1 %}, {% endif %}[{{child.label}}](#{{child.shortname|urlencode}})
+{% endfor %}
+{% endif %}
+
+{{class.description if class.description is not none }}
+
+{% if class.properties|length > 0%}
+| {{labels['Property']}} | {{labels['Description']}} | {{labels['Cardinality']}} | {{labels['Datatype']}} |
+| :------ | :---------- | :---------- | :------- |
+{% for property in class.properties %}
+| <a id='{{property.shortname|urlencode}}'></a>{{property.label}} <br> <small>[({{property.shortname}})]({{property.iri}})</small> | {{property.description if property.description is not none}} | `{{property.min if property.min is not none else '0'}}..{{property.max if property.max is not none else '*'}}`{{"[^1]" if property.uniqueLang is not none}} | {% for datatype in property.datatypes -%}{% if loop.index > 1 %} _{{labels['or']}}_ {% endif %}{% if datatype.type == "class" %}[{{datatype.label}}{% if datatype.crosslink %} <svg class="svg-external-link" viewBox="0 0 24 24" aria-labelledby="svg-external-link-title"><use xlink:href="#svg-external-link"></use></svg>](../{% if output_dir_length == 2 %}../{% endif %}{{datatype.crosslink}}/{{datatype.lang}}#{{datatype.shortname|urlencode}}){:target="_blank"}{% else %}](#{{datatype.shortname|urlencode}}){% endif %}{% else %}[`{{datatype.shortname}}`]({{datatype.iri}}){% endif %}{% endfor %} {% if property.value_list | length > 0 %}<br>_{{labels['Possible values']}}: {% for value in property.value_list -%}{% if loop.index > 1 %}, {% endif %}[`{{value.shortname}}`]({{value.iri}}){% endfor %}_{% endif %} |
+{% endfor %}
+{% endif %}
+
+{% for parent in class.superclasses %}
+{% if parent.properties|length > 0 %}
+_{{labels['Properties from']}} [{{parent.label}}](#{{parent.shortname|urlencode}}):_ {% for property in parent.properties %}{% if loop.index > 1 %}, {% endif %} [{{property.label}}](#{{property.shortname|urlencode}}){% endfor %}
+{% endif %}
+
+
+{% endfor %}
+{% endif %}
+{% endfor %}
+[^1]: {{labels['Unique language tags required']}}
+<style>
+#zoom {
+  height: 60vh;
+  padding: 5px;
+}
+
+#zoom > svg {
+    width: 100%;
+    height: 100%;
+}
+
+.svg-external-link {
+  width: 16px;
+  height: 16px;
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.5.0/dist/svg-pan-zoom.min.js"></script>
+<script>
+window.onload = (event) => {
+  svgPanZoom('#zoom > svg', {controlIconsEnabled: true})
+};
+</script>

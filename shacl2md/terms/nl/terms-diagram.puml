@@ -1,0 +1,108 @@
+@startuml
+!theme vibrant
+skinparam classFontSize 14
+!define LIGHTORANGE
+skinparam componentStyle uml2
+skinparam wrapMessageWidth 1000
+skinparam wrapWidth 1000
+' skinparam ArrowColor #Maroon
+' Remove shadows
+skinparam shadowing false
+'skinparam linetype polyline
+skinparam ArrowMessageAlignment left
+top to bottom direction
+
+
+class "<b>//www.w3.org/ns/locn#Address></b> (<http://www.w3.org/ns/locn#Address>)" as <http_//www.w3.org/ns/locn#Address> [[#%3Chttp%3A//www.w3.org/ns/locn%23Address%3E]]
+class "<b>Agent</b> (foaf:Agent)" as foaf_Agent [[#foaf%3AAgent]]
+class "<b>//data.europa.eu/m8g/ContactPoint></b> (<http://data.europa.eu/m8g/ContactPoint>)" as <http_//data.europa.eu/m8g/ContactPoint> [[#%3Chttp%3A//data.europa.eu/m8g/ContactPoint%3E]]
+class "<b>//data.europa.eu/m8g/GenericDate></b> (<http://data.europa.eu/m8g/GenericDate>)" as <http_//data.europa.eu/m8g/GenericDate> [[#%3Chttp%3A//data.europa.eu/m8g/GenericDate%3E]]
+class "<b>//www.w3.org/ns/adms#Identifier></b> (<http://www.w3.org/ns/adms#Identifier>)" as <http_//www.w3.org/ns/adms#Identifier> [[#%3Chttp%3A//www.w3.org/ns/adms%23Identifier%3E]]
+class "<b>Jurisdiction</b> (dc:Jurisdiction)" as dc_Jurisdiction [[#dc%3AJurisdiction]]
+class "<b>Location</b> (dc:Location)" as dc_Location [[#dc%3ALocation]]
+class "<b>//www.w3.org/ns/person#Person></b> (<http://www.w3.org/ns/person#Person>)" as <http_//www.w3.org/ns/person#Person> [[#%3Chttp%3A//www.w3.org/ns/person%23Person%3E]]
+class "<b>Document</b> (foaf:Document)" as foaf_Document [[#foaf%3ADocument]]
+class "<b>Concept</b> (skos:Concept)" as skos_Concept [[#skos%3AConcept]]
+
+
+<http_//www.w3.org/ns/locn#Address> : None : <i>rdf:langString</i> [0..*]
+<http_//www.w3.org/ns/locn#Address> : None : <i>rdfs:Literal</i> [0..*]
+<http_//www.w3.org/ns/locn#Address> : None : <i>rdf:langString</i> [0..*]
+<http_//www.w3.org/ns/locn#Address> : None : <i>rdf:langString</i> [0..*]
+<http_//www.w3.org/ns/locn#Address> : None : <i>rdfs:Literal</i> [0..*]
+<http_//www.w3.org/ns/locn#Address> : None : <i>rdfs:Literal</i> [0..*]
+<http_//www.w3.org/ns/locn#Address> : None : <i>rdf:langString</i> [0..*]
+<http_//www.w3.org/ns/locn#Address> : None : <i>rdf:langString</i> [0..*]
+<http_//www.w3.org/ns/locn#Address> : None : <i>rdfs:Literal</i> [0..*]
+<http_//www.w3.org/ns/locn#Address> : None : <i>rdf:langString</i> [0..*]
+<http_//www.w3.org/ns/locn#Address> : None : <i>rdf:langString</i> [0..*]
+
+
+
+
+foaf_Agent : None : <i>rdf:langString</i> [0..*]
+
+foaf_Agent --> skos_Concept :None [0..*]  > 
+
+
+<http_//data.europa.eu/m8g/ContactPoint> : None : <i>rdfs:Literal</i> [0..*]
+<http_//data.europa.eu/m8g/ContactPoint> : None : <i>rdfs:Literal</i> [0..*]
+<http_//data.europa.eu/m8g/ContactPoint> --> foaf_Document :None [0..*]  > 
+
+
+
+
+
+<http_//www.w3.org/ns/adms#Identifier> : None : <i>rdf:langString</i> [0..*]
+<http_//www.w3.org/ns/adms#Identifier> : None : <i>rdf:langString</i> [0..*]
+<http_//www.w3.org/ns/adms#Identifier> : None : <i>rdfs:Literal</i> [0..*]
+<http_//www.w3.org/ns/adms#Identifier> : None : <i>rdf:langString</i> [0..*]
+<http_//www.w3.org/ns/adms#Identifier> : None : <i>xsd:date</i> [0..*]
+<http_//www.w3.org/ns/adms#Identifier> --> <http_//www.w3.org/ns/person#Person> :None [0..*]  > 
+<http_//www.w3.org/ns/adms#Identifier> --> foaf_Agent :None [0..*]  > 
+
+
+
+
+
+dc_Jurisdiction : None : <i>xsd:anyURI</i> [0..*]
+dc_Jurisdiction : None : <i>rdf:langString</i> [0..*]
+
+
+
+
+dc_Location : None : <i>rdf:langString</i> [0..*]
+dc_Location : None : <i>xsd:anyURI</i> [0..*]
+
+
+
+
+<http_//www.w3.org/ns/person#Person> : None : <i>rdf:langString</i> [0..*]
+<http_//www.w3.org/ns/person#Person> : None : <i>rdf:langString</i> [0..*]
+<http_//www.w3.org/ns/person#Person> : None : <i>rdf:langString</i> [0..*]
+<http_//www.w3.org/ns/person#Person> : None : <i>rdf:langString</i> [0..*]
+<http_//www.w3.org/ns/person#Person> : None : <i>rdf:langString</i> [0..*]
+<http_//www.w3.org/ns/person#Person> : None : <i><http://data.europa.eu/m8g/GenericDate></i> [0..*]
+<http_//www.w3.org/ns/person#Person> : None : <i><http://data.europa.eu/m8g/GenericDate></i> [0..*]
+<http_//www.w3.org/ns/person#Person> : None : <i>rdf:langString</i> [0..*]
+<http_//www.w3.org/ns/person#Person> : None : <i>rdf:langString</i> [0..*]
+<http_//www.w3.org/ns/person#Person> --> <http_//data.europa.eu/m8g/ContactPoint> :None [0..*]  > 
+
+<http_//www.w3.org/ns/person#Person> --> <http_//www.w3.org/ns/adms#Identifier> :None [0..*]  > 
+<http_//www.w3.org/ns/person#Person> --> <http_//www.w3.org/ns/locn#Address> :None [0..*]  > 
+<http_//www.w3.org/ns/person#Person> --> dc_Jurisdiction :None [0..*]  \lNone [0..*]  > 
+<http_//www.w3.org/ns/person#Person> --> dc_Location :None [0..*]  \lNone [0..*]  \lNone [0..*]  \lNone [0..*]  > 
+
+<http_//www.w3.org/ns/person#Person> --> skos_Concept :None [0..*]  \lNone [0..*]  > 
+
+
+
+
+
+
+hide circle
+hide methods
+hide empty members
+@enduml
+
+
